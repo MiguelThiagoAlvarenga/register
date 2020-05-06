@@ -1,0 +1,29 @@
+
+
+.close {
+  height: 1rem;
+  float: right;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 0;
+  color: #000;
+  text-shadow: 0 1px 0 #fff;
+  opacity: .5;
+}
+.modal-header {
+  height: 1rem;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: start;
+  align-items: flex-start;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  padding: 1rem 1rem;
+  border-bottom: 1px solid #dee2e6;
+  border-top-left-radius: 0.3rem;
+  border-top-right-radius: 0.3rem;
+}
+
+.area-btn-novo {
+  padding-bottom: 2rem;
+}

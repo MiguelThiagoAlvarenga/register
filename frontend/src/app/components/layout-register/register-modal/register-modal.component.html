@@ -1,0 +1,160 @@
+<ng-template #content let-modal id="modal">
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <!-- main app container -->
+    <div class="card m-3">
+      <h5 class="card-header">Cadastro</h5>
+      <div class="card-body">
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group col-5">
+              <label>Nome</label>
+              <input type="text" formControlName="name" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" />
+              <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                <div *ngIf="f.name.errors.required">O nome é obrigatorio</div>
+              </div>
+            </div>
+            <div class="form-group col-3">
+              <label>CPF</label>
+              <input
+                      id="CPF"
+                      type="text"
+                      formControlName="cpf"
+                      class="form-control"
+                      [ngModel]="cpf"
+                      maxlength="14"
+                      (ngModelChange)="OnChangeCpf($event)"
+                      [ngClass]="{ 'is-invalid': submitted && !cpfIsValid }"
+              />
+              <div *ngIf="submitted && !cpfIsValid" class="invalid-feedback">
+                <div *ngIf="submitted && !cpfIsValid">CPF é obrigatorio</div>
+              </div>
+            </div>
+            <div class="form-group col-4">
+              <label>Data de nascimento</label>
+              <p-calendar
+                      formControlName="date"
+                      [(ngModel)]="birthDate"
+                      [monthNavigator]="true"
+                      [yearNavigator]="true"
+                      yearRange="1900:2020"
+                      [showIcon]="true"
+                      [locale]="locale"
+                      [ngClass]="{ 'is-invalid': submitted && f.date.errors }">
+              </p-calendar>
+              <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
+                <div *ngIf="f.date.errors.required">Data de aniversário é obrigatória</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-3">
+              <label>Endereço</label>
+              <input type="text" formControlName="address" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.address.errors }" />
+              <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                <div *ngIf="f.address.errors.required">Endereço é obrigatória</div>
+              </div>
+            </div>
+            <div class="form-group col-3">
+              <label>Bairro</label>
+              <input type="text" formControlName="neighborhood" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.neighborhood.errors }" />
+              <div *ngIf="submitted && f.neighborhood.errors" class="invalid-feedback">
+                <div *ngIf="f.neighborhood.errors.required">O bairro é obrigatória</div>
+              </div>
+            </div>
+            <div class="form-group col-2">
+              <label>CEP</label>
+              <input
+                      id="zipCode"
+                      type="text"
+                      formControlName="zipCode"
+                      class="form-control"
+                      [ngClass]="{ 'is-invalid': submitted && !zipCodeIsValid }"
+                      [ngModel]="zipCode"
+                      maxlength="10"
+                      (ngModelChange)="OnChangeZipCode($event)"/>
+              <div *ngIf="submitted && !zipCodeIsValid" class="invalid-feedback">
+                <div *ngIf="submitted && !zipCodeIsValid">CEP é obrigatória</div>
+              </div>
+            </div>
+            <div class="form-group col-2">
+              <label>Estado</label>
+              <select formControlName="state"
+                      class="form-control"
+                      [ngModel]="state"
+                      [ngClass]="{ 'is-invalid': submitted && f.state.errors }"
+                      (ngModelChange)="onChangeState($event)">
+                <option *ngFor="let state of listState" [value]="state.id">{{state.name}} </option>
+              </select>
+              <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                <div *ngIf="f.state.errors.required">Estado é obrigatorio</div>
+              </div>
+            </div>
+            <div class="form-group col-2">
+              <label>Município</label>
+              <select formControlName="county" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.county.errors }" [disabled]="!listCounty">
+                <option *ngFor="let county of listCounty" [value]="county.id">{{county.name}}</option>
+              </select>
+              <div *ngIf="submitted && f.county.errors" class="invalid-feedback">
+                <div *ngIf="f.county.errors.required">Município é obrigatório</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-4">
+              <label>Email</label>
+              <input
+                      type="text"
+                      formControlName="email"
+                      [ngModel]="email"
+                      (ngModelChange)="OnChangeEmail($event)"
+                      class="form-control" [ngClass]="{ 'is-invalid': submitted && (!contactIsValid) }" />
+              <div *ngIf="submitted && (!contactIsValid)" class="invalid-feedback">
+                <div *ngIf="(!contactIsValid)">Deve-se digitar um e-mail válido.</div>
+              </div>
+            </div>
+            <div class="form-group col-4">
+              <label>Skype</label>
+              <input type="text"
+                     formControlName="skype"
+                     class="form-control"
+                     (ngModelChange)="OnChangeSkype($event)"
+                     [ngModel]="skype"
+                     [ngClass]="{ 'is-invalid': submitted && (!contactIsValid)}" />
+              <div *ngIf="submitted && (!contactIsValid)" class="invalid-feedback">
+                <div *ngIf="!contactIsValid">Deve-se digitar o Skype.</div>
+              </div>
+            </div>
+            <div class="form-group col-4">
+              <label>Telefone</label>
+              <input
+                      id="telephone"
+                      formControlName="telephone"
+                      class="form-control"
+                      [ngModel]="telephone"
+                      maxlength="15"
+                      (ngModelChange)="OnChangeTelephone($event)"
+                      [ngClass]="{ 'is-invalid': submitted && (!contactIsValid)}"/>
+              <div *ngIf="submitted && (!contactIsValid)" class="invalid-feedback">
+                <div *ngIf="submitted && (!contactIsValid)">Deve-se digitar um telefone válido.</div>
+              </div>
+            </div>
+          </div>
+          <div class="text-center float-right">
+            <button class="btn btn-primary mr-1">Salve</button>
+            <button class="btn btn-secondary" type="reset" (click)="onReset()">Cancelar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<div class="area-btn-novo">
+  <button ngbTooltip="Clique para cadastrar e avaliar nova Register!" class="btn btn-outline-primary mb-2 mr-2" (click)="openXl()">Adicionar Pessoa</button>
+</div>

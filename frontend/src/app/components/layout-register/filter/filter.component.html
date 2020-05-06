@@ -1,0 +1,85 @@
+<div id="accordion" class="filter">
+
+  <div class="card">
+    <div class="card-header">
+      <a class="card-link" data-toggle="collapse" href="#collapseOne" (click)="clickColapsed()">
+        <h4> Filtros </h4>
+      </a>
+    </div>
+    <div id="collapseOne" class="collapse" data-parent="#accordion" [ngbCollapse]="isCollapsed">
+      <div class="card-body" >
+        <div class="panel panel-default panel-pesquisar">
+          <div class="panel-body">
+            <div class="row">
+
+              <div class="col-lg-12 border-top border-bottom">
+
+                <div class="pesquisar">
+                  <div class="col-lg-4 float-left">
+                    <label>Nome</label>
+                    <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Digite o Nome!"
+                            id="name"
+                            [(ngModel)]="name"
+                            (ngModelChange)="onChangeName($event)" >
+                  </div>
+
+                  <div class="col-lg-4 float-left">
+                    <label>CPF</label>
+                    <input
+                            id="cpf"
+                            type="text"
+                            class="form-control"
+                            placeholder="Digite o CPF aqui!"
+                            [ngModel]="cpf"
+                            maxlength="14"
+                            (ngModelChange)="onChangeCpf($event)" />
+                  </div>
+
+                  <div class="col-lg-4 float-left">
+                    <label>Data de Nascimento</label>
+                    <input
+                            class="form-control"
+                            type="date"
+                            [(ngModel)]="birthDate"
+                            (ngModelChange)="onChangeBirthDate($event)" >
+                  </div>
+
+
+                  <div class="col-lg-4 float-left">
+                    <label>Município</label>
+                    <select
+                            id="county"
+                            class="form-control"
+                            [ngModel]="county"
+                            (ngModelChange)="onChangeCounty($event)">
+                      <option *ngFor="let county of listCounty" [value]="county.id">{{county.name}} </option>
+                    </select>
+                  </div>
+
+                  <div class="col-lg-4 float-left">
+                    <label>Estado
+                    </label>
+                    <select
+                            id="state"
+                            class="form-control"
+                            [ngModel]="state"
+                            (ngModelChange)="onChangeState($event)">
+                      <option *ngFor="let state of listState" [value]="state.id">{{state.name}} </option>
+                    </select>
+                  </div>
+
+                  <div class="col-lg-4 float-right align-content-center text-center">
+                    <button class="btn-pesquisar form-control btn" (click)="clickFilter()">Filtrar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

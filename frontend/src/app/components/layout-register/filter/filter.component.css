@@ -1,0 +1,38 @@
+.filter {
+  margin-bottom: 2rem;
+}
+.panel-pesquisar {
+  padding: 0 0 0 0;
+  border-color: #000000;
+  background-color:#fdfdfd;
+}
+
+.pesquisar {
+  margin-bottom: 5em;
+}
+
+.btn-pesquisar {
+  margin-top: 3rem;
+  margin-bottom: 1.5rem;
+  border-color: #000000;
+  color: #000000;
+  background-color: #d3dadd;
+  border-radius: 2.25rem;
+}.btn-pesquisar:hover {
+  color: #fdfdfd;
+  background-color: blue;
+  text-decoration: underline;
+ }
+
+input {
+  border-radius: 4.25rem;
+}
+
+label {
+  margin-top: 1rem;
+}
+
+h4 {
+  margin-top: 0.6rem;
+  color: black;
+}

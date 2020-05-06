@@ -1,0 +1,12 @@
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <app-filter (resultFilter)="reciverFeedback($event)" [listState]="listState" ></app-filter>
+
+    <div class="area-btn-novo">
+      <button ngbTooltip="Clique para cadastrar e avaliar nova Register!" (click)="registerPerson(null)" class="btn btn-outline-primary mb-2 mr-2"  >Adicionar Pessoa</button>
+    </div> <br>
+
+    <app-grid-register [personList]="personList" (updatePerson)="registerPerson($event.id)"> </app-grid-register>
+  </div>
+</div>

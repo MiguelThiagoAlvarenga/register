@@ -1,0 +1,41 @@
+<div class="table-responsive-md">
+  <ng-container class="container-fluid">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col text-left">NOME</th>
+        <th scope="col">CPF</th>
+        <th scope="col">NASCIMENTO</th>
+        <th scope="col">ENDEREÇO</th>
+        <th scope="col">BAIRRO</th>
+        <th scope="col">CIDADE</th>
+        <th scope="col">ESTADO</th>
+        <th scope="col">CEP</th>
+        <th scope="col">CONTATO</th>
+        <th scope="col">Ações</th>
+      </tr>
+      </thead>
+      <tbody *ngIf="personList">
+        <tr *ngFor="let person of personList">
+          <td>{{person.name}}</td>
+          <td>{{cpfMask(person.cpf)}}</td>
+          <td>{{person.birthDate}}</td>
+          <td>{{person.address.address}}</td>
+          <td>{{person.address.neighborhood}}</td>
+          <td>{{person.address.county.name}}</td>
+          <td>{{person.address.county.state.name}}</td>
+          <td>{{zipCodeMask(person.address.zipCode)}}</td>
+          <td>{{person.contact.email}}</td>
+          <td><button ngbTooltip="Clique para cadastrar e avaliar nova Register!" class="btn btn-outline-primary mb-2 mr-2" (click)="update(person)">Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <div *ngIf="!personList || personList.length == 0" class="col-lg-12  text-center">
+    <div class="row col-lg-12">
+      <td class="container text-center col-lg-12 messageEmpty">
+        <h5 class="messageEmpty"> Não existem personList a serem exibidas!</h5>
+      </td>
+    </div>
+  </div>
+</div>
