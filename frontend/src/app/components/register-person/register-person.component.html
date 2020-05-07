@@ -29,6 +29,7 @@
                                     class="form-control"
                                     [ngModel]="cpf"
                                     maxlength="14"
+                                    [disabled]="isEditing"
                                     (ngModelChange)="OnChangeCpf($event)"
                                     [ngClass]="{ 'is-invalid': submitted && !cpfIsValid }"
                             />

@@ -31,6 +31,7 @@ export class RegisterPersonComponent implements OnInit {
   @Input() listState: StateModel[];
   @Output() updateList = new EventEmitter<any>();
 
+  isEditing: boolean;
   listCounty: CountyModel[] = [];
   state;
   zipCode: String;
@@ -83,7 +84,8 @@ export class RegisterPersonComponent implements OnInit {
   }
 
   async loadRegister(params){
-    if (params && params.id) {
+    this.isEditing = params && (params.id > -1);
+    if (this.isEditing) {
       const person = await this.personService.getById(params.id).then((person: PersonModel) => person);
       this.title = `Editando - ${person.name}`
       this.idPerson = person.id;
