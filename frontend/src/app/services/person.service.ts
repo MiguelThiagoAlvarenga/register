@@ -10,11 +10,10 @@ export class PersonService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<any[] > (`${this.url}/person/getAll`);
+    return this.http.get(`${this.url}/person/getAll`);
   }
 
   save(person) {
-    console.log(person);
     return this.http.post(`${this.url}/person/add`, person);
   }
 
@@ -26,8 +25,8 @@ export class PersonService {
     return this.http.get(`${this.url}/person/getByBirthDate/${birthDate}`);
   }
 
-  getCounty(idCounty) {
-    return this.http.get(`${this.url}/person/getCounty/${idCounty}`);
+  getByCounty(idCounty) {
+    return this.http.get(`${this.url}/person/getByCounty/${idCounty}`);
   }
 
   getByName(name) {
@@ -40,5 +39,9 @@ export class PersonService {
 
   async getById(id) {
     return await this.http.get(`${this.url}/person/getById/${id}`).toPromise();
+  }
+
+  delete(id) {
+    return this.http.delete(`${this.url}/person/delete/${id}`, { responseType: 'text' });
   }
 }

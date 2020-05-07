@@ -11,20 +11,24 @@
   margin-bottom: 5em;
 }
 
-.btn-pesquisar {
+.btn-filter {
   margin-top: 3rem;
   margin-bottom: 1.5rem;
   border-color: #000000;
   color: #000000;
   background-color: #d3dadd;
   border-radius: 2.25rem;
-}.btn-pesquisar:hover {
+}.btn-filter:hover {
   color: #fdfdfd;
   background-color: blue;
   text-decoration: underline;
  }
 
 input {
+  border-radius: 4.25rem;
+}
+
+select {
   border-radius: 4.25rem;
 }
 

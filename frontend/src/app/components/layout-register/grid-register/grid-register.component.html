@@ -26,7 +26,19 @@
           <td>{{person.address.county.state.name}}</td>
           <td>{{zipCodeMask(person.address.zipCode)}}</td>
           <td>{{person.contact.email}}</td>
-          <td><button ngbTooltip="Clique para cadastrar e avaliar nova Register!" class="btn btn-outline-primary mb-2 mr-2" (click)="update(person)">Editar</button></td>
+          <td>
+            <button
+                    ngbTooltip="Clique para cadastrar e avaliar nova Register!"
+                    class="btn btn-outline-primary mb-2"
+                    (click)="update(person)">&nbsp; &nbsp; Editar &nbsp; &nbsp;
+            </button>
+            &nbsp;
+            <button
+                    ngbTooltip="Clique para cadastrar e avaliar nova Register!"
+                    class="btn btn-danger mb-2"
+                    (click)="delete(person.id)">Remover
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

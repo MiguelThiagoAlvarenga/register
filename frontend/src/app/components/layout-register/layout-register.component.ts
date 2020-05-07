@@ -56,42 +56,34 @@ export class LayoutRegisterComponent implements OnInit {
     this.getList()
   }
 
-  Filter = {
-    cpf(cpf) {
-      this.personService.getByCpf(cpf).subscribe( (personList: PersonModel[]) => {
-
-        this.personList.push(personList)
-      });
-    },
-    state(idState){
-      this.personService.getByState(idState).subscribe( (personList: PersonModel[]) => {
-        this.personList = personList
-      });
-    },
-    birthDate(birthDate){
-      this.personService.getByBirthDate(birthDate).subscribe( (personList: PersonModel[]) => {
-        this.personList = personList
-      });
-    },
-    name(name){
-      this.personService.getByName(name).subscribe((personList: PersonModel[]) => {
-        this.personList = personList
-      } );
-
-    },
-    county(idCounty){
-      this.personService.getCounty(idCounty).subscribe( (personList: PersonModel[]) => {
-        this.personList = personList
-      } );
-
-    }
-  }
 
   reciverFeedback(filter) {
     if (filter && filter.type) {
       this.clean();
       this.personList = [];
-      this.Filter[filter.type](filter.value);
+      if (!filter.value) {
+        this.updateList();
+      } else if(filter.type === 'cpf') {
+        this.personService.getByCpf(filter.value).subscribe( (person: PersonModel) => {
+          this.personList.push(person)
+        });
+      } else if(filter.type === 'state'){
+        this.personService.getByState(filter.value).subscribe((personList: PersonModel[]) => {
+          this.personList = personList
+        });
+      } else if(filter.type === 'birthDate'){
+        this.personService.getByBirthDate(filter.value).subscribe( (personList: PersonModel[]) => {
+          this.personList = personList
+        });
+      } else if(filter.type === 'name'){
+        this.personService.getByName(filter.value).subscribe((personList: PersonModel[]) => {
+          this.personList = personList
+        } );
+      } else if(filter.type === 'county'){
+        this.personService.getByCounty(filter.value).subscribe( (personList: PersonModel[]) => {
+          this.personList = personList
+        } );
+      }
     } else {
       this.updateList();
     }
@@ -122,5 +114,9 @@ export class LayoutRegisterComponent implements OnInit {
 
   registerPerson(id){
     this.router.navigateByUrl(!id ? `/register-person` : `/update-person/${id}`);
+  }
+
+  deletePerson(id: number) {
+    this.personService.delete(id);
   }
 }

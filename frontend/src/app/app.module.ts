@@ -19,7 +19,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {RouterModule} from "@angular/router";
 import { AppRoutingModule } from './app-routing.module';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { CalendarModule } from 'primeng/calendar';
 import { RegisterPersonComponent } from './components/register-person/register-person.component';
 
 @NgModule({
@@ -45,7 +44,6 @@ import { RegisterPersonComponent } from './components/register-person/register-p
         ReactiveFormsModule,
         RouterModule,
         AppRoutingModule,
-        CalendarModule,
     ],
   providers: [
     PersonService

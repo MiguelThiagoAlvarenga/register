@@ -11,6 +11,7 @@ export class GridRegisterComponent implements OnInit {
 
   @Input() personList: PersonModel[];
   @Output() updatePerson= new EventEmitter<PersonModel>();
+  @Output() deletePerson= new EventEmitter<number>();
 
   constructor() { }
 
@@ -26,5 +27,9 @@ export class GridRegisterComponent implements OnInit {
 
   update(person: PersonModel) {
     this.updatePerson.emit(person)
+  }
+
+  delete(id) {
+    this.deletePerson.emit(id)
   }
 }

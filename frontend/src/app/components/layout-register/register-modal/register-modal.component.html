@@ -36,16 +36,12 @@
             </div>
             <div class="form-group col-4">
               <label>Data de nascimento</label>
-              <p-calendar
+              <input
+                      type="date"
                       formControlName="date"
                       [(ngModel)]="birthDate"
-                      [monthNavigator]="true"
-                      [yearNavigator]="true"
                       yearRange="1900:2020"
-                      [showIcon]="true"
-                      [locale]="locale"
                       [ngClass]="{ 'is-invalid': submitted && f.date.errors }">
-              </p-calendar>
               <div *ngIf="submitted && f.date.errors" class="invalid-feedback">
                 <div *ngIf="f.date.errors.required">Data de aniversário é obrigatória</div>
               </div>
