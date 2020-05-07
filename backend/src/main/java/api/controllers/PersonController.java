@@ -22,8 +22,8 @@ public class PersonController {
         return personService.add(person);
     }
 
-    @DeleteMapping("/delete")
-    public String delete(@RequestBody long id) {
+    @DeleteMapping("/delete/{id}")
+    public String delete(@PathVariable("id")  long id) {
       personService.delete(id);
       return "Ok";
     }

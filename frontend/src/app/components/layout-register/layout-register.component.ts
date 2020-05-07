@@ -88,6 +88,7 @@ export class LayoutRegisterComponent implements OnInit {
       this.updateList();
     }
   }
+
   getList(){
     this.stateService.getAll().then( (listState: StateModel[]) => {
       this.listState=listState;
@@ -117,6 +118,8 @@ export class LayoutRegisterComponent implements OnInit {
   }
 
   deletePerson(id: number) {
-    this.personService.delete(id);
+    this.personService.delete(id).subscribe(resp => {
+      this.updateList();
+    });
   }
 }
